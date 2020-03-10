@@ -1,0 +1,2 @@
+class BranchLog < ApplicationRecord
+end

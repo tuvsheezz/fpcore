@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="form-group">
+      <%= form_for(category) do |f| %>
+
+        <div class="form-group">
+          <% if category.errors[:name].any? %>
+            <%= f.label :name, t('category.name'), class: 'control-label'%>
+            <%= f.text_field :name , class: 'form-control is-invalid' %>
+            <p class="form-error"><%= category.errors[:name][0] %></p>
+          <% else %>
+            <%= f.label :name, t('category.name'), class: 'control-label' %>
+            <%= f.text_field :name , class: 'form-control' %>
+          <% end %>
+        </div>
+
+        <div class="voffset2"></div>
+
+        <div class="form-group">
+          <%= f.label "#{t('category.cover')}" %>
+          <%= f.file_field :image, id: "file-input", class: 'hidden', onchange: "readURL(this)", hidden: true %>
+        </div>
+
+        <div class="voffset2"></div>
+
+        <label for="file-input">
+          <% if category.image.attached? %>
+            <%= image_tag category.image, size: "300x300", id: 'img_prev', class: "img-rounded" %>
+          <% else %>
+            <%= image_tag 'question.png', size: "300x300", id: 'img_prev'%>
+          <% end %>
+        </label>
+
+        <div class="voffset2"></div>
+
+        <div class="actions pull-right">
+          <%= button_tag(type: "submit", class: "btn btn-primary" ) do %>
+            <i class="fas fa-hdd"></i>
+          <% end %>
+
+          <%= link_to categories_path, class: 'btn btn-danger' do %>
+            <i class="fa fa-undo"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(300)
+          .height(300);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

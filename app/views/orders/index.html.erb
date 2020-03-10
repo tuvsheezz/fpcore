@@ -1,0 +1,19 @@
+<h1>Orders</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-orders" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="name">Name</th>
+      <th data-data="bar">Bar</th>
+      <th data-data="check">Check</th>
+      <th data-data="price">Price</th>
+      <th data-data="recieved">Recieved</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

@@ -1,0 +1,196 @@
+<%= form_for(item) do |f| %>
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="form-group">
+      <% if item.errors[:name].any? %>
+        <%= f.label :name, t('item.name'), class: 'control-label'%>
+        <%= f.text_field :name , class: 'form-control is-invalid' %>
+        <p class="form-error"><%= item.errors[:name][0].capitalize %></p>
+      <% else %>
+        <%= f.label :name, t('item.name'), class: 'control-label' %>
+        <%= f.text_field :name , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:name_mn].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.name_mn')}", class: 'control-label' %>
+          <%= f.text_field :name_mn , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:name_mn][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.name_mn')}", class: 'control-label' %>
+        <%= f.text_field :name_mn , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:spec].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.spec')}", class: 'control-label' %>
+          <%= f.text_area :spec , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:spec][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.spec')}", class: 'control-label' %>
+        <%= f.text_area :spec , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:subcategory].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('subcat.show')}", class: 'control-label is-invalid' %>
+          <%= f.collection_select :subcategory_id, Subcategory.order(:name),:id,:name, {prompt: "#{t('item.subcat')}"}, {class: "form-control is-invalid"}%>
+          <p class="form-error"><%= item.errors[:subcategory][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('subcat.show')}", class: 'control-label' %>
+        <%= f.collection_select :subcategory_id, Subcategory.order(:name),:id,:name, {prompt: "#{t('item.subcat')}"}, {class: "form-control"}%>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:currency].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.currency')}", class: 'control-label' %>
+          <%= f.collection_select :currency_id, Currency.order(:name),:id,:name, {prompt: "#{t('item.currency')}"}, {class: "form-control is-invalid"}%>
+          <p class="form-error"><%= item.errors[:currency][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.currency')}", class: 'control-label' %>
+        <%= f.collection_select :currency_id, Currency.order(:name),:id,:name, {prompt: "#{t('item.currency')}"}, {class: "form-control"}%>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:price].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.price')}", class: 'control-label' %>
+          <%= f.number_field :price , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:price][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.price')}", class: 'control-label' %>
+        <%= f.number_field :price , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:maxp].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.maxp')}", class: 'control-label' %>
+          <%= f.number_field :maxp , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:maxp][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.maxp')}", class: 'control-label' %>
+        <%= f.number_field :maxp , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:minp].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.minp')}", class: 'control-label' %>
+          <%= f.number_field :minp , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:minp][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.minp')}", class: 'control-label' %>
+        <%= f.number_field :minp , class: 'form-control' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-12">
+    <div class="form-group">
+      <% if item.errors.details[:minimum].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.minimum')}", class: 'control-label' %>
+          <%= f.number_field :minimum , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:minimum][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.minimum')}", class: 'control-label' %>
+        <%= f.number_field :minimum , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "#{t('subcat.cover')}", class: 'control-label' %>
+      <%= f.file_field :cover, id: "file-input", hidden: true, onchange: "readURL(this)" %>
+    </div>
+
+    <label for="file-input">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, class: "img-rounded", size: "300x300", id: 'img_prev' %>
+      <% else %>
+        <%= image_tag 'question.png', size: "300x300", id: 'img_prev'%>
+      <% end %>
+    </label>
+
+    <div class="form-group">
+      <% if item.errors.details[:status].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.statuss')}", class: 'control-label' %>
+          <%= f.collection_select :status_id, Status.order(:mn),:id,:mn, {prompt: ""}, {class: "form-control"}%>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.statuss')}", class: 'control-label' %>
+        <%= f.collection_select :status_id, Status.order(:mn),:id,:mn, {prompt: ""}, {class: "form-control"}%>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if item.errors.details[:specialp].any? %>
+        <div class="has-error">
+          <%= f.label "#{t('item.specialp')}", class: 'control-label' %>
+          <%= f.number_field :specialp , class: 'form-control is-invalid' %>
+          <p class="form-error"><%= item.errors[:specialp][0].capitalize %></p>
+        </div>
+      <% else %>
+        <%= f.label "#{t('item.specialp')}", class: 'control-label' %>
+        <%= f.number_field :specialp , class: 'form-control' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "#{t('item.special_flag')}", class: 'control-label' %>
+      <%= f.check_box :special_flag , class: 'form-control' %>
+    </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="actions pull-right">
+      <%= button_tag(type: "submit", class: "btn btn-primary", data: { confirm: 'Нягталж харсан уу?', disable_with: "Loading ..." }) do %>
+        <i class="fa fa-hdd"></i>
+      <% end %>
+
+      <% if @item.id %>
+        <%= link_to @item, class: 'btn btn-danger' do %>
+          <i class="fa fa-undo"></i>
+        <% end %>
+      <% else %>
+        <%= link_to items_path, class: 'btn btn-danger' do %>
+          <i class="fa fa-undo"></i>
+        <% end %>
+      <% end %>
+    </div>
+<% end %>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(300)
+          .height(300);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

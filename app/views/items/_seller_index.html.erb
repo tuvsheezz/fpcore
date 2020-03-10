@@ -1,0 +1,135 @@
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table width="100%" class="table table-hover table-bordered" id="itemTable">
+          <thead>
+            <tr>
+              <th><%= t('item.name') %></th>
+              <th><%= t('item.cat') %></th>
+              <th><%= t('item.subcat2') %></th>
+              <th><%= t('item.maxp') %></th>
+              <th><%= t('item.minp') %></th>
+              <th><%= t('item.bar') %></th>
+              <th><%= t('item.cover') %></th>
+              <th><%= t('item.statuss') %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @items.each do |item| %>
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <%= item.name %>
+                    <br>
+                    <%= item.name_mn %>
+                  </td>
+                  <td style="vertical-align:middle;">
+	                  <i class="fa fa-folder"></i>
+	                  <%= item.subcategory.category.name %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                      <i class="fa fa-folder-open"></i>
+                      <%= item.subcategory.name %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <% if item.currency.currency_name == 'tugrug' %>
+                      <%= number_to_currency((item.maxp), unit: "MNT", format: "%n %u") %>
+                    <% elsif item.currency.currency_name == 'dollar' %>
+                      <% if item.maxp * Ratedollar.last.rate < 1000 %>
+                        <%= number_to_currency((item.maxp * Ratedollar.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+                      <% elsif item.maxp * Ratedollar.last.rate < 30000 %>
+                        <%= number_to_currency((item.maxp * Ratedollar.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+                      <% else %>
+                        <%= number_to_currency((item.maxp * Ratedollar.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+                      <% end %>
+                    <% else %>
+                      <% if item.maxp * Rateyuan.last.rate < 1000 %>
+                        <%= number_to_currency((item.maxp * Rateyuan.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+                      <% elsif item.maxp * Rateyuan.last.rate < 30000 %>
+                        <%= number_to_currency((item.maxp * Rateyuan.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+                      <% else %>
+                        <%= number_to_currency((item.maxp * Rateyuan.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                   <td style="vertical-align:middle;">
+                    <% if item.currency.currency_name == 'tugrug' %>
+                      <%= number_to_currency((item.minp), unit: "MNT", format: "%n %u") %>
+                    <% elsif item.currency.currency_name == 'dollar' %>
+                      <% if item.minp * Ratedollar.last.rate < 1000 %>
+                        <%= number_to_currency((item.minp * Ratedollar.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+                      <% elsif item.minp * Ratedollar.last.rate < 30000 %>
+                        <%= number_to_currency((item.minp * Ratedollar.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+                      <% else %>
+                        <%= number_to_currency((item.minp * Ratedollar.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+                      <% end %>
+                    <% else %>
+                      <% if item.minp * Rateyuan.last.rate < 1000 %>
+                        <%= number_to_currency((item.minp * Rateyuan.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+                      <% elsif item.minp * Rateyuan.last.rate < 30000 %>
+                        <%= number_to_currency((item.minp * Rateyuan.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+                      <% else %>
+                        <%= number_to_currency((item.minp * Rateyuan.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+                      <% end %>
+                    <% end %>
+                  </td>
+
+                  <td style="vertical-align:middle;">
+                    <svg class="barcode"
+                      jsbarcode-value="<%= item.bar %>"
+                      jsbarcode-textmargin="0"
+                      jsbarcode-height=50>
+                    </svg>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <%= link_to item_path(item) do %>
+                      <% if item.image.attached? %>
+                        <div><%= image_tag item.image, class: "img-circle", size: "50x50" %></div>
+                      <% else %>
+                        <div><%= image_tag 'question.png', size: "50x50" %></div>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td style="vertical-align:middle;"><%= item.status.mn %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  JsBarcode(".barcode").init();
+$(document).ready(function() {
+  $('#itemTable').DataTable( {
+      "language": {
+        "decimal":        "",
+        "emptyTable":     "<%= t('table.empty') %>",
+        "info": " <%= t('table.page') %> _PAGE_ / _PAGES_",
+        "infoEmpty": "<%= t('table.empty') %>",
+        "infoFiltered": "( <%= t('table.all') %> _MAX_ <%= t('table.filtered') %>)",
+        "infoPostFix":    "",
+        "thousands":      ",",
+        "lengthMenu": "<%= t('table.display') %> _MENU_ ",
+        "loadingRecords": "<%= t('table.loading') %>",
+        "processing":     "<%= t('table.processing') %>",
+        "search":         "<%= t('table.search') %>",
+        "zeroRecords": "<%= t('table.zero') %>",
+        "paginate": {
+            "first":      "<%= t('table.first') %>",
+            "last":       "<%= t('table.last') %>",
+            "next":       "<%= t('table.next') %>",
+            "previous":   "<%= t('table.previous') %>"
+        },
+        "aria": {
+            "sortAscending":  ": activate to sort column ascending",
+            "sortDescending": ": activate to sort column descending"
+        }
+    }
+  } );
+} );
+</script>

@@ -1,0 +1,54 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">
+    <% if @category.image.attached? %>
+      <%= image_tag @category.image , size: "60x60", class: "img-circle" %>
+      <%= @category.name %>
+    <% else %>
+      <%= image_tag 'question.png', size: "60x60" %>
+      <%= @category.name %>
+    <% end %>
+  </h1>
+  <span>
+    <%= link_to categories_path, class: 'btn btn-danger pull-right', style: 'margin-left: 20px;' do %>
+      <i class="fa fa-undo"></i>
+    <% end %>
+
+    <%= link_to edit_category_path(@category), class: 'btn btn-primary pull-right' do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+  </span>
+</div>
+
+<div class="voffset4"></div>
+<% if @category.subcategories.any? %>
+  <div class="row">
+    <% p = 0 %>
+    <% @category.subcategories.each do |subcategory| %>
+      <div class="col-lg-2 col-md-4 col-xs-12 text-center">
+        <%= link_to subcategory do %>
+          <div>
+            <h3>
+              <%= subcategory.name %>
+            </h3>
+          </div>
+          <% if subcategory.image.attached? %>
+            <div>
+              <%= image_tag subcategory.image, style: "max-width: 100%", class: "img-rounded" %>
+            </div>
+          <% else %>
+            <div>
+              <%= image_tag 'question.png', class: "row-fit",  width: '100%', height: '100%' %>
+            </div>
+          <% end %>
+
+        <% end %>
+      </div>
+      <% p += 1 %>
+      <% if p%6==0 %>
+        <div class="clearfix"></div>
+      <%end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= t('basic.no_content') %>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-folder-open"></i> <%= t('subcat.subcat') %></h1>
+  <%= link_to new_subcategory_path, class: "btn btn-primary pull-right" do %>
+    <i class="fa fa-plus"></i>
+  <% end %>
+</div>
+
+<% if @subcategories.any? %>
+  <div class="row">
+    <% p = 0 %>
+    <% @subcategories.each do |subcategory| %>
+      <div class="col-lg-2 col-md-4 col-xs-12 text-center">
+        <%= link_to subcategory do %>
+          <div>
+            <h4>
+              <%= subcategory.name %>
+            </h4>
+          </div>
+          <% if subcategory.image.attached? %>
+            <div>
+              <%= image_tag subcategory.image, style: "max-width: 100%", class: "img-rounded" %>
+            </div>
+          <% else %>
+            <div>
+              <%= image_tag 'question.png', class: "row-fit",  width: '100%', height: '100%' %>
+            </div>
+          <% end %>
+
+        <% end %>
+      </div>
+      <% p += 1 %>
+      <% if p%6==0 %>
+        <div class="clearfix"></div>
+      <%end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= t('basic.no_content') %>
+<% end %>

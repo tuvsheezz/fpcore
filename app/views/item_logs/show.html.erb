@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @item_log.item_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item_log.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item_log.user_id %>
+</p>
+
+<p>
+  <strong>Bar:</strong>
+  <%= @item_log.bar %>
+</p>
+
+<p>
+  <strong>Subcategory:</strong>
+  <%= @item_log.subcategory_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item_log.price %>
+</p>
+
+<p>
+  <strong>Maxp:</strong>
+  <%= @item_log.maxp %>
+</p>
+
+<p>
+  <strong>Minp:</strong>
+  <%= @item_log.minp %>
+</p>
+
+<p>
+  <strong>Minimum:</strong>
+  <%= @item_log.minimum %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @item_log.currency_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @item_log.note %>
+</p>
+
+<%= link_to 'Edit', edit_item_log_path(@item_log) %> |
+<%= link_to 'Back', item_logs_path %>

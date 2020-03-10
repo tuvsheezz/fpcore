@@ -1,0 +1,67 @@
+<%= form_with(model: machigainaoshi, local: true) do |form| %>
+  <% if machigainaoshi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(machigainaoshi.errors.count, "error") %> prohibited this machigainaoshi from being saved:</h2>
+
+      <ul>
+      <% machigainaoshi.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.text_field :item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_id %>
+    <%= form.text_field :product_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :branch_id %>
+    <%= form.text_field :branch_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nybo_id %>
+    <%= form.number_field :nybo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :seller_id %>
+    <%= form.number_field :seller_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_id %>
+    <%= form.number_field :admin_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pre_stat %>
+    <%= form.check_box :pre_stat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :check %>
+    <%= form.check_box :check %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

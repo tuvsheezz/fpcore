@@ -1,0 +1,125 @@
+<!-- Heading -->
+<div class="sidebar-heading">
+  Тохиргоо
+</div>
+
+<li class="nav-item active">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdminMenu" aria-expanded="true" aria-controls="collapseAdminMenu">
+    <i class="fas fa-fw fa-cog"></i>
+    <span><%= t('menu.admin_menu')%></span>
+  </a>
+  <div id="collapseAdminMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <%= link_to (branches_path),  {class: "collapse-item"} do %>
+        <i class="fa fa-code-branch"></i> <%= t('branch.branch') %>
+      <% end %>
+      <%= link_to (users_path),  {class: "collapse-item"} do %>
+        <i class="fa fa-user-alt"></i> <%= t('users.user') %>
+      <% end %>
+    </div>
+  </div>
+</li>
+
+<li class="nav-item active">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdminMenu2" aria-expanded="true" aria-controls="collapseAdminMenu2">
+    <i class="fas fa-fw fa-cog"></i>
+    <span><%= t('menu.admin_menu2')%></span>
+  </a>
+  <div id="collapseAdminMenu2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <%= link_to (categories_path), {class: "collapse-item"} do %>
+        <i class="fa fa-folder"></i> <%= t('category.category') %>
+      <% end %>
+
+      <%= link_to (subcategories_path),  {class: "collapse-item"} do %>
+        <i class="fa fa-folder-open"></i> <%= t('subcat.subcat') %>
+      <% end %>
+
+      <%= link_to (items_path),  {class: "collapse-item"} do %>
+          <i class="fa fa-file"></i> <%= t('item.item') %>
+      <% end %>
+    </div>
+  </div>
+</li>
+<!-- Categories and item -->
+
+<!-- Rates -->
+<li class="nav-item active">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRates" aria-expanded="true" aria-controls="collapseRates">
+    <i class="fas fa-fw fa-money-bill-alt"></i>
+    <span><%= t('menu.rate_menu') %></span>
+  </a>
+  <div id="collapseRates" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+      <%= link_to (rateyuans_path), {class: "collapse-item"} do %>
+        <i class="fas fa-yen-sign"></i> <%= t('currency.yuan') %>
+      <% end %>
+
+      <%= link_to (ratedollars_path),  {class: "collapse-item"} do %>
+        <i class="fa fa-dollar-sign"></i> <%= t('currency.dollar') %>
+      <% end %>
+    </div>
+  </div>
+</li>
+<!-- Rates -->
+<li class="nav-item active">
+    <%= link_to (tusgaibaraa_index_path) do %>
+        <i class="fa fa-file"></i> <%= t('tusgaibaraa.title') %>
+    <% end %>
+</li>
+
+<li class="nav-item active">
+    <%= link_to (products_path) do %>
+        <i class="fa fa-file"></i> <%= t('product.product') %>
+    <% end %>
+</li>
+
+<li class="nav-item active">
+    <%= link_to (sales_path) do %>
+        <i class="fa fa-tasks"></i> <%= t('sale.sale') %>
+    <% end %>
+</li>
+
+<li class="nav-item active">
+    <%= link_to (outofstock_index_path) do %>
+        <i class="fa fa-ban"></i> <%= t('stock.stock') %>
+    <% end %>
+</li>
+<li class="nav-item active">
+    <%= link_to (search_index_path) do %>
+        <i class="fa fa-search"></i> <%= t('search.index') %>
+    <% end %>
+</li>
+<li class="nav-item active">
+    <%= link_to (transfers_path) do %>
+        <i class="fa fa-exchange"></i> <%= t('transfer.transfer') %>
+    <% end %>
+</li>
+
+<li class="nav-item active">
+    <%= link_to orders_path do %>
+        <i class="fa fa-globe"></i> <%= t('order.index') %>
+    <% end %>
+</li>
+<li class="nav-item active">
+    <%= link_to (stocks_path) do %>
+        <i class="fa fa-calendar"></i> <%= t('stock.index') %>
+    <% end %>
+</li>
+<li class="nav-item active">
+    <%= link_to debts_path do %>
+        <i class="fa fa-arrow-right"></i> <%= t('debt.index') %>
+    <% end %>
+</li>
+
+<li class="nav-item active">
+    <%= link_to machigainaoshis_path do %>
+        <i class="fa fa-life-saver"></i> <%= t('machi.index') %>
+    <% end %>
+</li>
+<li class="nav-item active">
+    <%= link_to balance_index_path do %>
+        <i class="fa fa-list-ol"></i> Бүх бараа жагсаалт
+    <% end %>
+</li>

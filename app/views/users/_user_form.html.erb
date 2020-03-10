@@ -1,0 +1,114 @@
+<%= form_for(user) do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <% if user.errors[:email].any? %>
+          <%= f.label :email, t('activerecord.attributes.user.email'), class: 'control-label'%>
+          <%= f.email_field :email, autocomplete: :off, class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:email][0].capitalize %></p>
+        <% else %>
+          <%= f.label :email, t('activerecord.attributes.user.email'), class: 'control-label' %>
+          <%= f.email_field :email , autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <% if user.errors[:password].any? %>
+          <%= f.label :password, t('activerecord.attributes.user.password'), class: 'control-label'%>
+          <%= f.password_field :password, autocomplete: :off,  class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:password][0].capitalize %></p>
+        <% else %>
+          <%= f.label :password, t('activerecord.attributes.user.password'), class: 'control-label' %>
+          <%= f.password_field :password, autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <% if user.errors[:name].any? %>
+          <%= f.label :name, t('activerecord.attributes.user.name'), class: 'control-label'%>
+          <%= f.text_field :name, autocomplete: :off,  class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:name][0].capitalize %></p>
+        <% else %>
+          <%= f.label :name, t('activerecord.attributes.user.name'), class: 'control-label' %>
+          <%= f.text_field :name , autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <% if user.errors[:phone].any? %>
+          <%= f.label :phone, t('activerecord.attributes.user.phone'), class: 'control-label'%>
+          <%= f.telephone_field :phone, autocomplete: :off,  class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:phone][0].capitalize %></p>
+        <% else %>
+          <%= f.label :phone, t('activerecord.attributes.user.phone'), class: 'control-label' %>
+          <%= f.telephone_field :phone , autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <% if user.errors[:phone2].any? %>
+          <%= f.label :phone2, t('activerecord.attributes.user.phone2'), class: 'control-label'%>
+          <%= f.telephone_field :phone2, autocomplete: :off,  class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:phone2][0].capitalize %></p>
+        <% else %>
+          <%= f.label :phone2, t('activerecord.attributes.user.phone2'), class: 'control-label' %>
+          <%= f.telephone_field :phone2 , autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <% if user.errors[:address].any? %>
+          <%= f.label :address, t('activerecord.attributes.user.address'), class: 'control-label'%>
+          <%= f.text_field :address, autocomplete: :off,  class: 'form-control is-invalid' %>
+          <p class="form-error"><%= user.errors[:address][0].capitalize %></p>
+        <% else %>
+          <%= f.label :address, t('activerecord.attributes.user.address'), class: 'control-label' %>
+          <%= f.text_field :address , autocomplete: :off, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "#{t('subcat.cover')}" %>
+        <%= f.file_field :cover, id: "file-input", hidden: true, onchange: "readURL(this)" %>
+      </div>
+
+      <label for="file-input">
+        <% if @user.image.attached? %>
+          <%= image_tag @user.image, size: "300x300", id: 'img_prev', class: "img-rounded" %>
+        <% else %>
+          <%= image_tag 'question.png', size: "300x300", id: 'img_prev'%>
+        <% end %>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 actions">
+      <%= button_tag(type: "submit", class: "btn btn-primary", data: { confirm: t('basic.submitconfirm') } ) do %>
+        <i class="fa fa-save"></i>
+      <% end %>
+
+      <%= link_to users_path, class: 'btn btn-danger' do %>
+        <i class="fa fa-undo"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(300)
+          .height(300);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

@@ -1,0 +1,22 @@
+<h1>Sales</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-sales" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="branch">Branch</th>
+      <th data-data="user">User</th>
+      <th data-data="noat">Noat</th>
+      <th data-data="tax">Tax</th>
+      <th data-data="salestatus_id">Salestatus</th>
+      <th data-data="remainder">Remainder</th>
+      <th data-data="total">Total</th>
+      <th data-data="note">Note</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Sale', new_sale_path %>

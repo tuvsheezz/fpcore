@@ -1,0 +1,59 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><%= t('dollar.rate') %></h1>
+  <%= link_to new_ratedollar_path, class: "btn btn-primary pull-right" do %>
+    <i class="fa fa-plus"></i>
+  <% end %>
+</div>
+
+<table class="responsive nowrap table" id="dttb-ratedollars" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="rate"><%= t('dollar.rate') %></th>
+      <th data-data="created_at"><%= t('dollar.created') %></th>
+      <th data-data="user_name"><%= t('dollar.by') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function() {
+   $('#dttb-ratedollars').dataTable({
+     "processing": true,
+     "serverSide": true,
+     "order": [[1, "desc"]],
+     "ajax": $('#dttb-ratedollars').data('source'),
+     "pagingType": "full_numbers",
+     "columns": [
+       { searchable: true, orderable: true, data: 'rate'},
+       { searchable: false, orderable: true, data: 'created_at'},
+       { searchable: false, orderable: false, data: 'user_name'}
+     ],
+     "language": {
+        "decimal":        "",
+        "emptyTable":     "<%= t('table.empty') %>",
+        "info": " <%= t('table.page') %> _PAGE_ / _PAGES_",
+        "infoEmpty": "<%= t('table.empty') %>",
+        "infoFiltered": "( <%= t('table.all') %> _MAX_ <%= t('table.filtered') %>)",
+        "infoPostFix":    "",
+        "thousands":      ",",
+        "lengthMenu": "<%= t('table.display') %> _MENU_ ",
+        "loadingRecords": "<i class='fas fa-spinner'></i>",
+        "processing":     "<i class='fas fa-spinner'></i>",
+        "search":         "<i class='fas fa-search'></i>",
+        "zeroRecords": "<%= t('table.zero') %>",
+        "paginate": {
+            "first":      "<i class='fas fa-angle-double-left'></i>",
+            "last":       "<i class='fas fa-angle-double-right'></i>",
+            "next":       "<i class='fas fa-angle-right'></i>",
+            "previous":   "<i class='fas fa-angle-left'></i>"
+        },
+        "aria": {
+            "sortAscending":  ": activate to sort column ascending",
+            "sortDescending": ": activate to sort column descending"
+        }
+      }
+   });
+  });
+</script>

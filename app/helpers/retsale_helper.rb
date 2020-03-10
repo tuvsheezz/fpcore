@@ -1,0 +1,2 @@
+module RetsaleHelper
+end

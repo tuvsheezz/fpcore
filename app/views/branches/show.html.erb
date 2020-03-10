@@ -1,0 +1,57 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">
+    <% if @branch.image.attached? %>
+        <%= image_tag @branch.image, class: "img-circle", size: "50x50" %>
+          <%= @branch.name %>
+    <% else %>
+      <%= image_tag 'question.png', size: "50x50" %>
+      <%= @branch.name %>
+    <% end %>
+  </h1>
+  <span>
+    <%= link_to :back, class: 'btn btn-danger pull-right', style: 'margin-left: 20px;' do %>
+      <i class="fa fa-undo"></i>
+    <% end %>
+    <% if current_user.role.en == "admin" %>
+      <%= link_to edit_branch_path(@branch), class: 'btn btn-primary pull-right' do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+    <% end %>
+  </span>
+</div>
+
+<div class="voffset6"></div>
+<p>Salbariin hudaldagch</p>
+<% if @users.any? %>
+    <% @users.each do |user|  %>
+        <%= link_to user_path(user) do %>
+            <%= user.name %>
+        <% end %>
+    <% end %>
+<% else %>
+    Salbart hudaldagch tomiloogui baina.
+<% end %>
+<p>Salbart baigaa baraanuud</p>
+
+<%= link_to bybranchid_products_path(branch_id: @branch.id) do %>
+    baraanuud
+<% end %>
+
+<div class="row">
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-4 col-md-6  col-sm-12 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Өнөөдрийн гүйлгээнүүд</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</row>

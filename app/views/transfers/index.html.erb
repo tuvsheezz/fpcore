@@ -1,0 +1,21 @@
+<h1>Transfers</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-transfers" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="bto">Bto</th>
+      <th data-data="bfrom">Bfrom</th>
+      <th data-data="item">Item</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="uto">Uto</th>
+      <th data-data="ufrom">Ufrom</th>
+      <th data-data="check">Check</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Transfer', new_transfer_path %>

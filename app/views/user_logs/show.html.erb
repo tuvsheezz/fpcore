@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>U:</strong>
+  <%= @user_log.u_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_log.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_log.name %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @user_log.branch_id %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user_log.role_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user_log.email %>
+</p>
+
+<p>
+  <strong>Phone1:</strong>
+  <%= @user_log.phone1 %>
+</p>
+
+<p>
+  <strong>Phone2:</strong>
+  <%= @user_log.phone2 %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user_log.address %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @user_log.note %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user_log.password %>
+</p>
+
+<%= link_to 'Edit', edit_user_log_path(@user_log) %> |
+<%= link_to 'Back', user_logs_path %>

@@ -1,0 +1,61 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-user"></i> <%= t('users.info') %></h1>
+  <span>
+    <%= link_to users_path, class: "btn btn-danger" do %>
+      <i class="fa fa-undo"></i>
+    <% end %>
+    <%= link_to edit_user_path, class: "btn btn-primary" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+  </span>
+</div>
+
+<table class="table">
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.name') %></strong></td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.email') %></strong></td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.address') %></strong></td>
+    <td><%= @user.address %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.phone') %></strong></td>
+    <td><%= @user.phone %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.phone2') %></strong></td>
+    <td><%= @user.phone2 %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.created_at') %></strong></td>
+    <td><%= @user.created_at %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.branch_id') %></strong></td>
+    <td>
+      <% if @user.branch_id and Branch.find_by_id(@user.branch_id) %>
+        <%= Branch.find_by_id(@user.branch_id).name %></td>
+      <% else %>
+        ---
+      <% end %>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.role') %></strong></td>
+    <td><%= @user.role.mn %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t('activerecord.attributes.user.cover') %></strong></td>
+    <td>
+      <% if current_user.image.attached? %>
+        <%= image_tag current_user.image, size: "100x100", class: "img-rounded" %>
+      <% else %>
+        <%= image_tag 'user.png', size: "100x100", class: "img-rounded", style: "border: 2px solid black" %>
+      <% end %>
+    </td>
+  </tr>
+</table>

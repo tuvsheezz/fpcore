@@ -1,0 +1,2 @@
+class YuanLog < ApplicationRecord
+end

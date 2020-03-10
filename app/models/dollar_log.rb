@@ -1,0 +1,2 @@
+class DollarLog < ApplicationRecord
+end

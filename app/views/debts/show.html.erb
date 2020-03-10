@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sale:</strong>
+  <%= @debt.sale %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @debt.user %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @debt.branch %>
+</p>
+
+<p>
+  <strong>Remainder:</strong>
+  <%= @debt.remainder %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @debt.paid %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @debt.amount %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @debt.note %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @debt.status %>
+</p>
+
+<%= link_to 'Edit', edit_debt_path(@debt) %> |
+<%= link_to 'Back', debts_path %>

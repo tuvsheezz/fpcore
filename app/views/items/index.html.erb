@@ -1,0 +1,26 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><%= t('item.item') %></h1>
+  <span>
+    <% if current_user %>
+      <% if current_user.role.en == "admin"  or current_user.role.en == "nyarav" %>
+        <%= link_to new_item_path, class: "btn btn-primary pull-right" do %>
+          <i class="fa fa-plus"></i>
+        <% end %>
+      <% end %>
+      <% if current_user.role.en == "admin"  or current_user.role.en == "nyabo" %>
+        <%= link_to report_items_path, class: 'btn btn-default pull-right', target: 'blank' do %>
+          <i class="fa fa-print"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </span>
+</div>
+
+<div class="voffset4"></div>
+<% if @items.any? %>
+<% if current_user.role.en == "admin" %>
+  <%= render 'admin_index' %>
+<% elsif current_user.role.en == "nyabo" or  current_user.role.en == "seller" or current_user.role.en == "nyarav" %>
+  <%= render 'seller_index' %>
+<% end %>
+<% end %>

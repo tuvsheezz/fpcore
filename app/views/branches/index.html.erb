@@ -1,0 +1,67 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><%= t('branch.branch') %></h1>
+  <% if current_user.role.en == "admin" %>
+    <span>
+      <%= link_to branch_logs_path, class: "btn btn-circle btn-warning" do %>
+        <i class="fa fa-question"></i>
+      <% end %>
+
+      <%= link_to new_branch_path, class: "btn btn-primary" do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </span>
+  <% end %>
+</div>
+
+<% if @branches.any? %>
+  <div class="row">
+    <% p = 0 %>
+    <% if current_user.role.en == "admin" or current_user.role.en == "nyabo" %>
+      <% @branches.each do |branch| %>
+        <div class="col-lg-2 col-md-4 col-xs-12 text-center">
+          <%= link_to branch do %>
+            <div><h4><%= branch.name %></h4></div>
+            <% if branch.image.attached? %>
+              <div><%= image_tag branch.image, class: "img-rounded", style: "max-width: 100%" %></div>
+            <% else %>
+              <div><%= image_tag 'question.png', class: "row-fit",  width: '100%', height: '100%' %></div>
+            <% end %>
+          <% end %>
+          <% p += 1 %>
+          <% if p%12==0 %>
+            <div class="clearfix"></div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <% @branches.each do |branch| %>
+        <div class="col-lg-2 col-md-5 col-xs-12 text-center">
+          <% if current_user.branch_id == branch.id %>
+            <%= link_to branch do %>
+              <div><h4><%= branch.name %></h4></div>
+              <% if branch.image.attached? %>
+                <div><%= image_tag branch.image, class: "img-rounded", style: "max-width: 100%" %></div>
+              <% else %>
+                <div><%= image_tag 'question.png', class: "row-fit",  width: '100%', height: '100%' %></div>
+              <% end %>
+            <% end %>
+
+          <% else %>
+            <div><h4><%= branch.name %></h4></div>
+            <% if branch.image.attached? %>
+              <div><%= image_tag branch.image, class: "img-rounded", style: "max-width: 100%" %></div>
+            <% else %>
+              <div><%= image_tag 'question.png', class: "row-fit",  width: '100%', height: '100%' %></div>
+            <% end %>
+          <% end %>
+        </div>
+        <% p += 1 %>
+        <% if p%6==0 %>
+          <div class="clearfix"></div>
+        <%end %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= t('basic.no_content') %>
+<% end %>

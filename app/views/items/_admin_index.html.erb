@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table width="100%" class="table table-hover table-bordered" id="itemTable">
+          <thead>
+            <tr>
+              <th><%= t('item.name') %></th>
+              <th><%= t('item.subcat2') %></th>
+              <th><%= t('item.price') %></th>
+              <th><%= t('item.maxp') %></th>
+              <th><%= t('item.minp') %></th>
+              <th><%= t('item.specialp') %></th>
+              <th><%= t('item.minimum') %></th>
+              <th><%= t('item.bar') %></th>
+              <th><%= t('item.cover') %></th>
+              <th><%= t('item.currency2') %></th>
+              <th><%= t('item.statuss') %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @items.each do |item| %>
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <%= item.name %>
+                    <br>
+                    <%= item.name_mn %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <%= link_to item.subcategory do %>
+                      <i class="fa fa-folder-open"></i>
+                      <%= item.subcategory.name %>
+                    <% end %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <% if item.currency.currency_name == 'tugrug' %>
+                      <%= number_to_currency((item.price), unit: "MNT", format: "%n %u") %>
+                    <% elsif item.currency.currency_name == 'dollar' %>
+                      <%= number_to_currency((item.price), unit: "USD", format: "%n %u") %>
+                    <% else %>
+                      <%= number_to_currency((item.price), unit: "CNY", format: "%n %u") %>
+                    <% end %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <% if item.currency.currency_name == 'tugrug' %>
+                      <%= number_to_currency((item.maxp), unit: "MNT", format: "%n %u") %>
+                    <% elsif item.currency.currency_name == 'dollar' %>
+                      <%= number_to_currency((item.maxp), unit: "USD", format: "%n %u") %>
+                    <% else %>
+                      <%= number_to_currency((item.maxp), unit: "CNY", format: "%n %u") %>
+                    <% end %>
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <% if item.currency.currency_name == 'tugrug' %>
+                      <%= number_to_currency((item.minp), unit: "MNT", format: "%n %u") %>
+                    <% elsif item.currency.currency_name == 'dollar' %>
+                      <%= number_to_currency((item.minp), unit: "USD", format: "%n %u") %>
+                    <% else %>
+                      <%= number_to_currency((item.minp), unit: "CNY", format: "%n %u") %>
+                    <% end %>
+                  </td>
+                  <% if item.special_flag %>
+                    <td style="vertical-align:middle;">
+                      <% if item.currency.currency_name == 'tugrug' %>
+                        <%= number_to_currency((item.specialp), unit: "MNT", format: "%n %u") %>
+                      <% elsif item.currency.currency_name == 'dollar' %>
+                        <%= number_to_currency((item.specialp), unit: "USD", format: "%n %u") %>
+                      <% else %>
+                        <%= number_to_currency((item.specialp), unit: "CNY", format: "%n %u") %>
+                      <% end %>
+                    </td>
+                  <% else %>
+                    <td style="vertical-align:middle;">
+                    </td>
+                  <% end %>
+                  </td>
+                  <td style="vertical-align:middle;"><%= item.minimum %></td>
+                  <td style="vertical-align:middle;">
+                    <svg class="barcode"
+                      jsbarcode-value="<%= item.bar %>"
+                      jsbarcode-textmargin="0"
+                      jsbarcode-height=50>
+                    </svg>
+                  </td>
+                  <td style="vertical-align:middle;">
+
+                    <%= link_to item_path(item) do %>
+                      <% if item.image.attached? %>
+                        <div><%= image_tag item.image, class: "img-circle", size: "50x50" %></div>
+                      <% else %>
+                        <div><%= image_tag 'question.png', size: "50x50" %></div>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td style="vertical-align:middle;"><%= item.currency.name %></td>
+                  <td style="vertical-align:middle;"><%= item.status.mn %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  JsBarcode(".barcode").init();
+
+  $(document).ready(function() {
+    $('#itemTable').DataTable( {
+        "language": {
+          "decimal":        "",
+          "emptyTable":     "<%= t('table.empty') %>",
+          "info": " <%= t('table.page') %> _PAGE_ / _PAGES_",
+          "infoEmpty": "<%= t('table.empty') %>",
+          "infoFiltered": "( <%= t('table.all') %> _MAX_ <%= t('table.filtered') %>)",
+          "infoPostFix":    "",
+          "thousands":      ",",
+          "lengthMenu": "<%= t('table.display') %> _MENU_ ",
+          "loadingRecords": "<%= t('table.loading') %>",
+          "processing":     "<%= t('table.processing') %>",
+          "search":         "<%= t('table.search') %>",
+          "zeroRecords": "<%= t('table.zero') %>",
+          "paginate": {
+              "first":      "<%= t('table.first') %>",
+              "last":       "<%= t('table.last') %>",
+              "next":       "<%= t('table.next') %>",
+              "previous":   "<%= t('table.previous') %>"
+          },
+          "aria": {
+              "sortAscending":  ": activate to sort column ascending",
+              "sortDescending": ": activate to sort column descending"
+          }
+      }
+    } );
+} );
+</script>

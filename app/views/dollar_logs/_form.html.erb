@@ -1,0 +1,37 @@
+<%= form_with(model: dollar_log, local: true) do |form| %>
+  <% if dollar_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dollar_log.errors.count, "error") %> prohibited this dollar_log from being saved:</h2>
+
+      <ul>
+      <% dollar_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :dollar_id %>
+    <%= form.number_field :dollar_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.text_field :rate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

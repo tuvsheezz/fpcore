@@ -1,0 +1,34 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><%= t('dollar.new') %></h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-sm-3">
+    <div class="form-group">
+      <%= form_for(@ratedollar) do |f| %>
+
+        <div class="form-group">
+          <% if @ratedollar.errors[:rate].any? %>
+            <%= f.label :rate, t('dollar.rate'), class: 'control-label'%>
+            <%= f.number_field :rate , class: 'form-control is-invalid' %>
+            <p class="form-error"><%= @ratedollar.errors[:rate][0].capitalize %></p>
+          <% else %>
+            <%= f.label :rate, t('dollar.rate'), class: 'control-label' %>
+            <%= f.number_field :rate , class: 'form-control' %>
+          <% end %>
+        </div>
+
+        <div class="actions pull-right">
+
+          <%= button_tag(type: "submit", class: "btn btn-primary" ) do %>
+            <i class="fas fa-hdd"></i>
+          <% end %>
+
+          <%= link_to ratedollars_path, class: 'btn btn-danger' do %>
+            <i class="fa fa-undo"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

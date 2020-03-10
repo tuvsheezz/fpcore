@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dollar:</strong>
+  <%= @dollar_log.dollar_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dollar_log.user_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @dollar_log.note %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @dollar_log.rate %>
+</p>
+
+<%= link_to 'Edit', edit_dollar_log_path(@dollar_log) %> |
+<%= link_to 'Back', dollar_logs_path %>

@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-xs-12">
+    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+      <tr>
+        <td><strong><%= t('item.name') %></strong></td>
+        <td>
+          <%= @item.name %>
+          <hr>
+          <%= @item.name_mn %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong><%= t('item.subcat') %></strong></td>
+        <td>
+            <i class="fa fa-folder-open"></i>
+            <%= @item.subcategory.name %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong><%= t('item.maxp') %></strong></td>
+        <td>
+          <% if @item.currency.currency_name == 'tugrug' %>
+            <%= number_to_currency((@item.maxp), unit: "MNT", format: "%n %u") %>
+          <% elsif @item.currency.currency_name == 'dollar' %>
+            <% if @item.maxp * Ratedollar.last.rate < 1000 %>
+              <%= number_to_currency((@item.maxp * Ratedollar.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+            <% elsif @item.maxp * Ratedollar.last.rate < 30000 %>
+              <%= number_to_currency((@item.maxp * Ratedollar.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+            <% else %>
+              <%= number_to_currency((@item.maxp * Ratedollar.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+            <% end %>
+          <% else %>
+            <% if @item.maxp * Rateyuan.last.rate < 1000 %>
+              <%= number_to_currency((@item.maxp * Rateyuan.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+            <% elsif @item.maxp * Rateyuan.last.rate < 30000 %>
+              <%= number_to_currency((@item.maxp * Rateyuan.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+            <% else %>
+              <%= number_to_currency((@item.maxp * Rateyuan.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><strong><%= t('item.minp') %></strong></td>
+        <td>
+          <% if @item.currency.currency_name == 'tugrug' %>
+            <%= number_to_currency((@item.minp), unit: "MNT", format: "%n %u") %>
+          <% elsif @item.currency.currency_name == 'dollar' %>
+            <% if @item.minp * Ratedollar.last.rate < 1000 %>
+              <%= number_to_currency((@item.minp * Ratedollar.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+            <% elsif @item.minp * Ratedollar.last.rate < 30000 %>
+              <%= number_to_currency((@item.minp * Ratedollar.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+            <% else %>
+              <%= number_to_currency((@item.minp * Ratedollar.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+            <% end %>
+          <% else %>
+            <% if @item.minp * Rateyuan.last.rate < 1000 %>
+              <%= number_to_currency((@item.minp * Rateyuan.last.rate).ceil(-1), unit: "MNT", format: "%n %u") %>
+            <% elsif @item.minp * Rateyuan.last.rate < 30000 %>
+              <%= number_to_currency((@item.minp * Rateyuan.last.rate).ceil(-2), unit: "MNT", format: "%n %u") %>
+            <% else %>
+              <%= number_to_currency((@item.minp * Rateyuan.last.rate).ceil(-3), unit: "MNT", format: "%n %u") %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong><%= t('item.bar') %></strong></td>
+        <td><%= @item.bar %></td>
+      </tr>
+      <tr>
+        <td><strong><%= t('item.statuss') %></strong></td>
+        <td><%= @item.status.mn %></td>
+      </tr>
+      <tr>
+        <td><strong><%= t('item.spec') %></strong></td>
+        <td><pre><%= @item.spec %></pre></td>
+      </tr>
+      <tr>
+        <td><p><strong><%= t('item.cover') %></strong></p></td>
+        <td>
+          <% if @item.image.attached? %>
+            <%= image_tag @item.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'question.png', size: "200x200" %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

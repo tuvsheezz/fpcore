@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Yuan:</strong>
+  <%= @yuan_log.yuan_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @yuan_log.user_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @yuan_log.note %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @yuan_log.rate %>
+</p>
+
+<%= link_to 'Edit', edit_yuan_log_path(@yuan_log) %> |
+<%= link_to 'Back', yuan_logs_path %>

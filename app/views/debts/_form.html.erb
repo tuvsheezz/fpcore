@@ -1,0 +1,57 @@
+<%= form_with(model: debt, local: true) do |form| %>
+  <% if debt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(debt.errors.count, "error") %> prohibited this debt from being saved:</h2>
+
+      <ul>
+      <% debt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :sale_id %>
+    <%= form.text_field :sale_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :branch_id %>
+    <%= form.text_field :branch_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remainder %>
+    <%= form.text_field :remainder %>
+  </div>
+
+  <div class="field">
+    <%= form.label :paid %>
+    <%= form.text_field :paid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

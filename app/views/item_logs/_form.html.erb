@@ -1,0 +1,72 @@
+<%= form_with(model: item_log, local: true) do |form| %>
+  <% if item_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(item_log.errors.count, "error") %> prohibited this item_log from being saved:</h2>
+
+      <ul>
+      <% item_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.number_field :item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bar %>
+    <%= form.text_field :bar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcategory_id %>
+    <%= form.number_field :subcategory_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maxp %>
+    <%= form.text_field :maxp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minp %>
+    <%= form.text_field :minp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minimum %>
+    <%= form.number_field :minimum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :currency_id %>
+    <%= form.number_field :currency_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

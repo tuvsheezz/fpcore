@@ -1,0 +1,2 @@
+module CategoryLogsHelper
+end

@@ -1,0 +1,25 @@
+<h1>Item Logs</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-item_logs" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="item_id">Item</th>
+      <th data-data="name">Name</th>
+      <th data-data="user_id">User</th>
+      <th data-data="bar">Bar</th>
+      <th data-data="subcategory_id">Subcategory</th>
+      <th data-data="price">Price</th>
+      <th data-data="maxp">Maxp</th>
+      <th data-data="minp">Minp</th>
+      <th data-data="minimum">Minimum</th>
+      <th data-data="currency_id">Currency</th>
+      <th data-data="note">Note</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Item Log', new_item_log_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= @stock.seller_id %>
+</p>
+
+<p>
+  <strong>Nyabo:</strong>
+  <%= @stock.nyabo_id %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @stock.branch_id %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

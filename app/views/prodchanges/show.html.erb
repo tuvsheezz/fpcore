@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @prodchange.branch %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @prodchange.user %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @prodchange.product %>
+</p>
+
+<p>
+  <strong>Change:</strong>
+  <%= @prodchange.change %>
+</p>
+
+<%= link_to 'Edit', edit_prodchange_path(@prodchange) %> |
+<%= link_to 'Back', prodchanges_path %>

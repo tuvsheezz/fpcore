@@ -1,0 +1,2 @@
+class SubcategoryLog < ApplicationRecord
+end

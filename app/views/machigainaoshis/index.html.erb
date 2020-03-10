@@ -1,0 +1,24 @@
+<h1>Machigainaoshis</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-machigainaoshis" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="item">Item</th>
+      <th data-data="product">Product</th>
+      <th data-data="branch">Branch</th>
+      <th data-data="nybo_id">Nybo</th>
+      <th data-data="seller_id">Seller</th>
+      <th data-data="admin_id">Admin</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="pre_stat">Pre stat</th>
+      <th data-data="check">Check</th>
+      <th data-data="note">Note</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Machigainaoshi', new_machigainaoshi_path %>

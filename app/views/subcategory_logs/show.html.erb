@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subcategory:</strong>
+  <%= @subcategory_log.subcategory_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @subcategory_log.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @subcategory_log.category_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subcategory_log.name %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @subcategory_log.note %>
+</p>
+
+<%= link_to 'Edit', edit_subcategory_log_path(@subcategory_log) %> |
+<%= link_to 'Back', subcategory_logs_path %>

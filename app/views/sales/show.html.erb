@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @sale.branch %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sale.user %>
+</p>
+
+<p>
+  <strong>Noat:</strong>
+  <%= @sale.noat %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @sale.tax %>
+</p>
+
+<p>
+  <strong>Salestatus:</strong>
+  <%= @sale.salestatus_id %>
+</p>
+
+<p>
+  <strong>Remainder:</strong>
+  <%= @sale.remainder %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @sale.total %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @sale.note %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>
